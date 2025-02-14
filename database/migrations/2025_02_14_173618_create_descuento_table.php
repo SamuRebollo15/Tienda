@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('descuento', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->decimal('porcentaje', 5, 2);
+            $table->decimal('porcentaje', 5, 2)->check('porcentaje <= 100'); 
             $table->date('fecha_finalizacion');
             $table->text('descripcion')->nullable();
         });

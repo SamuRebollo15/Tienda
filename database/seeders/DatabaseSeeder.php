@@ -25,7 +25,11 @@ class DatabaseSeeder extends Seeder
      [
                     ProveedorSeeder::class,
                     UsuarioSeeder::class,
+                    DireccionSeeder::class,
+                    DescuentosSeeder::class,
+                    ProductosSeeder::class,
+                    PedidosSeeder::class
             ]);
-        
+            $this->command->info('¡Migración y Seeders completados con éxito!');
     }
 }
