@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('rol');
             $table->string('nombre_completo');
             $table->unsignedBigInteger('direccion_id')->nullable();
-            $table->string('imagen')->nullable();
+            $table->string('imagen_usuario')->nullable();
     });
     }
 
