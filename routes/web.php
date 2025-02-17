@@ -24,3 +24,12 @@ Route::get('/hola', function () {
     return 'Hola, ' . auth()->user()->email;
 })->middleware('auth');
 
+Route::get('/logout', function () {
+   
+
+    // Desloguear al usuario
+    Auth::logout();
+
+
+    return "Fuiste deslogueado";
+})->middleware('auth')->name('logout');
