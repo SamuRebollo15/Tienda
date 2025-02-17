@@ -9,6 +9,8 @@ class Pedido extends Model
 {
     use HasFactory;
 
+    protected $table = 'pedidos'; // Tabla singular 'direccion' en lugar de 'directions'
+
     // Definimos los campos que pueden ser asignados masivamente
     protected $fillable = [
         'usuario_id', 'producto_id', 'fecha_compra', 'fecha_aproximada_entrega'

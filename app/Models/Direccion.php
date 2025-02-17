@@ -8,6 +8,9 @@ class Direccion extends Model
 {
     use HasFactory;
 
+    // Especificar explícitamente el nombre de la tabla
+    protected $table = 'direccion'; // Tabla singular 'direccion' en lugar de 'directions'
+
     protected $fillable = [
         'pais', 'provincia', 'calle', 'codigo_postal'
     ];
@@ -15,6 +18,6 @@ class Direccion extends Model
     // Relación inversa con usuarios
     public function usuarios()
     {
-        return $this->hasMany(Usuario::class);
+        return $this->hasMany(Usuario::class, 'direccion_id', 'id');
     }
 }
