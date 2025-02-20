@@ -16,7 +16,6 @@
 </head>
 <body >
 @auth
-<h1>Estas logueado</h1>
     <!-- Barra de navegación -->
     <nav class="bg-white shadow-md p-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">Tienda Laravel</h1>
@@ -105,9 +104,55 @@
 @endauth
 
 @guest
-<h1>Esto es no loggeado </h1>
- <!-- Barra de navegación -->
- <nav class="bg-white shadow-md p-4 flex justify-between items-center">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Laravel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .producto {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .producto:hover .overlay {
+            opacity: 0.5;
+        }
+
+        .producto:hover .botones {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .botones {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translate(-50%, 100%);
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Barra de navegación -->
+    <nav class="bg-white shadow-md p-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">Tienda Laravel</h1>
         <div>
             <a href="{{ url('/login') }}">
@@ -115,6 +160,7 @@
             </a>
             <button class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">Registrarse</button>
         </div>
+        <p>HOLA QUE TAL</p>
     </nav>
 
     <!-- Contenedor de Productos -->
@@ -228,7 +274,8 @@
         </div>
     </div>
 
-
+</body>
+</html>
 @endguest
 
 </body>
