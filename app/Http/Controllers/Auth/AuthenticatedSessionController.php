@@ -14,8 +14,12 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
-    {
+    public function create(Request $request): View{
+
+        if ($request->has('redirect')) 
+        {
+            session(['redirect' => $request->input('redirect')]);
+        }
         return view('auth.login');
     }
 
@@ -28,8 +32,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Redirigir al usuario a la URL guardada en la sesión (si existe)
+        if (session()->has('redirect')) {
+            return redirect(session('redirect'));
+        }
+
+        // Redirigir a la página por defecto (dashboard o home)
         return redirect()->intended(route('dashboard', absolute: false));
-    }
+        }
 
     /**
      * Destroy an authenticated session.

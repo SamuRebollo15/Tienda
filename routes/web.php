@@ -37,7 +37,10 @@ Route::get('/logout', function () {
 })->middleware('auth')->name('logout');
 
 
-
+Route::get('/prueba', function () {
+   
+    return view('ejemplo');
+})->name('prueba');
 
 Route::get('/productos', [ProductoController::class, 'index']); // Listar todos los productos
 Route::get('/productos/filtrar/nombre', [ProductoController::class, 'filtrarPorNombre']); // Filtrar por nombre
