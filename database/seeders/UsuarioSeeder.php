@@ -22,6 +22,15 @@ class UsuarioSeeder extends Seeder
             'imagen_usuario' => 'juan.jpg',
         ]);
 
+         Usuario::create([
+            'usuario' => 'juanperez',
+            'email' => 'juan@example.com',
+            'password' => 'password123', // Laravel lo hasheará automáticamente
+            'rol' => 'admin',
+            'nombre_completo' => 'Juan Pérez',
+            'direccion_id' => 1,
+            'imagen_usuario' => 'juan.jpg',
+        ]);
         Usuario::create([
             'usuario' => 'mariagonzalez',
             'email' => 'maria@example.com',

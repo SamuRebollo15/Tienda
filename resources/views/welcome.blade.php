@@ -12,6 +12,37 @@
             transition: transform 0.3s ease;
             z-index: 10; /* Asegura que el producto sobresalga por encima de los demás */
         }
+        .producto {
+            position: relative;
+            overflow: hidden;
+        }
+        .producto:hover .overlay {
+            opacity: 0.5;
+        }
+        .producto:hover .botones {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .botones {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translate(-50%, 100%);
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
     </style>
 </head>
 <body >
@@ -110,9 +141,9 @@
  <nav class="bg-white shadow-md p-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">Tienda Laravel</h1>
         <div>
-            <a href="{{ url('/login') }}">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Iniciar sesión</button>
-            </a>
+            
+                <button id="botonLogin" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Iniciar sesión</button>
+            
             <button class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">Registrarse</button>
         </div>
     </nav>
@@ -183,7 +214,7 @@
                 </div>
                 <div class="botones">
                     <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Añadir al carrito</button>
+                    
                 </div>
             </div>
 
@@ -228,7 +259,20 @@
         </div>
     </div>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const loginButton = document.getElementById('botonLogin');
+        if (loginButton) {
+            loginButton.addEventListener('click', function() {
+                // Obtener la URL actual
+                const currentUrl = window.location.href;
 
+                // Redirigir al login con el parámetro 'redirect'
+                window.location.href = "{{ route('login') }}?redirect=" + encodeURIComponent(currentUrl);
+            });
+        }
+    });
+</script>
 @endguest
 
 </body>
