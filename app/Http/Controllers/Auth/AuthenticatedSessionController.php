@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
         }
 
         // Redirigir a la página por defecto (dashboard o home)
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect("/");
         }
 
     /**
