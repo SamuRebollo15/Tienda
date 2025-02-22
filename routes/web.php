@@ -26,6 +26,19 @@ Route::get('/hola', function () {
     return 'Hola, ' . auth()->user()->email;
 })->middleware('auth');
 
+Route::get('/gestion', function () {
+    return view('vista_gestionar_productos', ['productos' => App\Models\Producto::all()]);
+})->middleware('auth');
+Route::get('/gestion2', function () {
+    return view('vista_gestionar_proveedores', ['proveedores' => App\Models\Proveedor::all()]);
+})->middleware('auth');
+Route::get('/gestion3', function () {
+    return view('vista_gestionar_direcciones', ['direcciones' => App\Models\Direccion::all()]);
+})->middleware('auth');
+Route::get('/gestion4', function () {
+    return view('vista_gestionar_descuentos', ['descuentos' => App\Models\Descuento::all()]);
+})->middleware('auth');
+
 Route::get('/logout', function () {
    
 

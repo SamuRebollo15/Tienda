@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pedidos', function (Blueprint $table) {
-            $table->id();  // ID de pedido
-            $table->unsignedBigInteger('usuario_id');  // ID del usuario que realiza el pedido
-            $table->unsignedBigInteger('producto_id');  // ID del producto relacionado
-            $table->date('fecha_compra');  // Fecha de la compra
-            $table->date('fecha_aproximada_entrega');  // Fecha aproximada de entrega
+            $table->id();
+            $table->unsignedBigInteger('usuario_id'); 
+            $table->date('fecha_compra');  
+            $table->date('fecha_aproximada_entrega');
         });
     }
 

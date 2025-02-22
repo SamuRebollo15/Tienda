@@ -9,28 +9,19 @@ class Pedido extends Model
 {
     use HasFactory;
 
-    protected $table = 'pedidos'; // Tabla singular 'direccion' en lugar de 'directions'
+    protected $table = 'pedidos';
 
-    // Definimos los campos que pueden ser asignados masivamente
-    protected $fillable = [
-        'usuario_id', 'producto_id', 'fecha_compra', 'fecha_aproximada_entrega'
-    ];
+    protected $fillable = ['fecha_compra', 'fecha_aproximada_entrega', 'usuario_id'];
 
-    /**
-     * Relación con el modelo Usuario.
-     * Un pedido pertenece a un único usuario.
-     */
+    // Relación con el modelo Usuario
     public function usuario()
     {
         return $this->belongsTo(Usuario::class);
     }
 
-    /**
-     * Relación con el modelo Producto.
-     * Un pedido pertenece a un único producto.
-     */
-    public function producto()
+    // Relación con el modelo PedidoProducto
+    public function productos()
     {
-        return $this->belongsTo(Producto::class);
+        return $this->hasMany(PedidoProducto::class);
     }
 }
