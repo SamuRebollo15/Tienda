@@ -26,9 +26,6 @@ Route::get('/hola', function () {
     return 'Hola, ' . auth()->user()->email;
 })->middleware('auth');
 
-Route::get('/gestion', function () {
-    return view('vista_gestionar_productos', ['productos' => App\Models\Producto::all()]);
-})->middleware('auth');
 Route::get('/gestion2', function () {
     return view('vista_gestionar_proveedores', ['proveedores' => App\Models\Proveedor::all()]);
 })->middleware('auth');
@@ -36,9 +33,15 @@ Route::get('/gestion3', function () {
     return view('vista_gestionar_direcciones', ['direcciones' => App\Models\Direccion::all()]);
 })->middleware('auth');
 Route::get('/gestion4', function () {
-    return view('vista_gestionar_descuentos', ['descuentos' => App\Models\Descuento::all()]);
+    return view('vista_gestionar_direcciones', ['direcciones' => App\Models\Direccion::all()]);
 })->middleware('auth');
-
+Route::get('/crearProducto', function () {
+    return view('vista_crear_producto', ['descuentos' => App\Models\Descuento::all(),'proveedores' => App\Models\Proveedor::all()]);
+})->middleware('auth');
+Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
+Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
+Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
+Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
 Route::get('/logout', function () {
    
 
@@ -55,7 +58,6 @@ Route::get('/prueba', function () {
     return view('ejemplo');
 })->name('prueba');
 
-Route::get('/productos', [ProductoController::class, 'index']); // Listar todos los productos
 Route::get('/productos/filtrar/nombre', [ProductoController::class, 'filtrarPorNombre']); // Filtrar por nombre
 Route::get('/productos/filtrar/precio-min', [ProductoController::class, 'filtrarPorPrecioMin']); // Filtrar por precio mínimo
 Route::get('/productos/filtrar/precio-max', [ProductoController::class, 'filtrarPorPrecioMax']); // Filtrar por precio máximo

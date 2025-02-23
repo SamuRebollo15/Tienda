@@ -12,6 +12,11 @@
             <h1 class="text-2xl font-bold">Gestión de Productos</h1>
             <a href="#" class="bg-green-500 text-white px-4 py-2 rounded text-sm">Agregar Producto</a>
         </div>
+        @if(session('success'))
+        <div class="bg-green-500 text-white p-4 rounded mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
         
         <input type="text" id="search" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Buscar producto...">
         
@@ -40,7 +45,8 @@
                             <td class="p-3">{{ $producto->descripcion }}</td>
                             <td class="p-3">{{ $producto->cantidad }}</td>
                             <td class="p-3 flex space-x-2">
-                                <a href="#" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
+                                <a href="{{ route('productos.edit', $producto->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
+
                                 <form action="#" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')

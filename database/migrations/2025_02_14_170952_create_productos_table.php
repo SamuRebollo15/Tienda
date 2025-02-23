@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('descuento_id')->nullable();
             $table->text('descripcion')->nullable();
             $table->integer('cantidad');
+            $table->timestamps();
             
         });
     }
