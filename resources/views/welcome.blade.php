@@ -50,7 +50,6 @@
             opacity: 0;
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
-        
     </style>
 </head>
 
@@ -60,22 +59,24 @@
     <!-- Barra de navegación -->
     <nav class="bg-white shadow-md p-4 flex justify-between items-center relative">
         <h1 class="text-2xl font-bold">Tienda Laravel</h1>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-4 relative -left-[100px]">
             <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="Usuario" class="w-8 h-8 rounded-full">
             <span class="font-semibold">Samuel</span>
-            <div class="relative desplegable-opciones">
-                <select name="opciones" id="opciones" class="appearance-none bg-white border border-gray-300 rounded px-3 py-1 pr-8 text-gray-700 leading-tight focus:outline-none focus:border-blue-500">
-                    <option value="perfil">Perfil</option>
-                    <option value="pedidos">Pedidos</option>
-                    <option value="cerrar_sesion">Cerrar sesión</option>
-                </select>
-                <!-- Flecha personalizada -->
-                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            <div class="relative inline-block text-left">
+                <button id="dropdownButton" class="bg-blue-500 text-white px-4 py-2 rounded flex items-center">
+                    <span class="mr-2">Menú</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
+                </button>
+
+                <div id="dropdownMenu" class="hidden absolute mt-2 w-40 bg-white border border-gray-300 rounded shadow-lg z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Opción 1</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Opción 2</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Opción 3</a>
                 </div>
             </div>
+
         </div>
     </nav>
 
@@ -192,6 +193,18 @@
         </div>
     </div>
 
+    <script>
+        document.getElementById('dropdownButton').addEventListener('click', function() {
+            document.getElementById('dropdownMenu').classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!document.getElementById('dropdownButton').contains(event.target)) {
+                document.getElementById('dropdownMenu').classList.add('hidden');
+            }
+        });
+    </script>
+
     @endauth
 
     @guest
@@ -201,7 +214,7 @@
         <h1 class="text-2xl font-bold">Tienda Laravel</h1>
         <div>
 
-            <button id="botonLogin" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Iniciar sesión</button>
+            <button id="botonLogin" href="/login" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Iniciar sesión</button>
 
             <button class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">Registrarse</button>
         </div>
@@ -321,8 +334,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const loginButton = document.getElementById('botonLogin');
-            const menu = document.getElementById('dropdown-menu');
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
             if (loginButton) {
                 loginButton.addEventListener('click', function() {
                     // Obtener la URL actual
