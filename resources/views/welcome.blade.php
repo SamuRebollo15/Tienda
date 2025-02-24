@@ -44,6 +44,7 @@
             position: absolute;
             bottom: 10px;
             left: 50%;
+
             transform: translate(-50%, 100%);
             display: flex;
             gap: 10px;
@@ -88,14 +89,14 @@
             <!-- Producto 1 -->
             <div class="producto bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="overlay"></div>
-                <img src="https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/202409/26/00118007000906____3__600x600.jpg" alt="Producto 1" class="h-64 w-full object-cover">
+                <img src="https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/202409/26/00118007000906____3__600x600.jpg" alt="Producto 1" class="h-64  object-cover">
                 <div class="p-4">
                     <h3 class="text-lg font-bold">Producto 1</h3>
                     <p class="text-gray-700 mt-2">$ 199.99</p>
                 </div>
                 <div class="botones">
                     <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Añadir al carrito</button>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
 
                 </div>
             </div>
@@ -109,7 +110,7 @@
                 </div>
                 <div class="botones">
                     <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Añadir al carrito</button>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
                 </div>
             </div>
 
@@ -122,7 +123,7 @@
                 </div>
                 <div class="botones">
                     <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Añadir al carrito</button>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
                 </div>
             </div>
 
@@ -135,7 +136,7 @@
                 </div>
                 <div class="botones">
                     <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Añadir al carrito</button>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
                 </div>
             </div>
 
@@ -148,7 +149,7 @@
                 </div>
                 <div class="botones">
                     <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Añadir al carrito</button>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
                 </div>
             </div>
 
@@ -161,7 +162,7 @@
                 </div>
                 <div class="botones">
                     <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Añadir al carrito</button>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
                 </div>
             </div>
 
@@ -174,7 +175,7 @@
                 </div>
                 <div class="botones">
                     <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Añadir al carrito</button>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
                 </div>
             </div>
 
@@ -187,7 +188,7 @@
                 </div>
                 <div class="botones">
                     <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Añadir al carrito</button>
+                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
                 </div>
             </div>
         </div>
