@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('porcentaje', 5, 2)->check('porcentaje <= 100'); 
             $table->date('fecha_finalizacion');
             $table->text('descripcion')->nullable();
+            $table->timestamps(); 
         });
     }
 

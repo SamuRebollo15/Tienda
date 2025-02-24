@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('provincia');  // Provincia
             $table->string('calle');  // Calle
             $table->string('codigo_postal');  // Código Postal
+            $table->timestamps();
         });
     }
 

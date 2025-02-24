@@ -12,7 +12,13 @@
             <h1 class="text-2xl font-bold">Gestión de Productos</h1>
             <a href="/crearProducto" class="bg-green-500 text-white px-4 py-2 rounded text-sm">Agregar Producto</a>
         </div>
-        @if(session('success'))
+        @if(session('error'))
+        <div class="bg-red-500 text-white p-4 rounded mb-4">
+            {{ session('error') }}
+        </div>
+    @endif
+    
+    @if(session('success'))
         <div class="bg-green-500 text-white p-4 rounded mb-4">
             {{ session('success') }}
         </div>

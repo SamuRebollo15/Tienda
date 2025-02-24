@@ -39,8 +39,9 @@ Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('prod
 Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
 Route::get('/crearProducto', [ProductoController::class, 'crearProductoVista']) ->name('productos.create');
 
-Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');    
-
+Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');
+Route::get('/crearDescuentos', [DescuentoController::class, 'create'])->name('descuentos.create');      
+Route::post('/descuentos', [DescuentoController::class, 'store'])->name('descuentos.store');
 Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedores.index'); 
 
 Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index'); 

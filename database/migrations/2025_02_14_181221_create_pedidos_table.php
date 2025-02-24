@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('usuario_id'); 
             $table->date('fecha_compra');  
             $table->date('fecha_aproximada_entrega');
+            $table->timestamps();
         });
     }
 

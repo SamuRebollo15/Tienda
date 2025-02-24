@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('direccion');
             $table->text('descripcion')->nullable();
             $table->string('telefono', 15);
+            $table->timestamps();
         });
     }
 
