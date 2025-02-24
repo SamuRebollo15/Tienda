@@ -18,13 +18,24 @@ class ProductoController extends Controller
     }
 
     public function edit($id)
-{
-    $producto = Producto::findOrFail($id); // Busca el producto por ID
-    $proveedores = Proveedor::all(); // Obtiene la lista de proveedores
-    $descuentos = Descuento::all(); // Obtiene la lista de descuentos
+    {
+        $producto = Producto::findOrFail($id); // Busca el producto por ID
+        $proveedores = Proveedor::all(); // Obtiene la lista de proveedores
+        $descuentos = Descuento::all(); // Obtiene la lista de descuentos
 
-    return view('vista_editar_producto', compact('producto', 'proveedores', 'descuentos'));
-}
+        return view('vista_editar_producto', compact('producto', 'proveedores', 'descuentos'));
+    }
+
+    public function destroy($id)
+    {
+        $producto = Producto::findOrFail($id); // Busca el producto por ID
+
+        $producto->delete(); // Elimina el producto
+
+        return redirect()->route('productos.index')->with('success', 'Producto eliminado correctamente.');
+    }
+
+
 
 
     // Ruta para filtrar productos por nombre

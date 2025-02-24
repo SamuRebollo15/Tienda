@@ -38,10 +38,14 @@ Route::post('/productos', [ProductoController::class, 'store'])->name('productos
 Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
 Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
 Route::get('/crearProducto', [ProductoController::class, 'crearProductoVista']) ->name('productos.create');
+Route::delete("productos/{id}", [ProductoController::class, 'destroy'])->name('productos.destroy');
 
 Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');
 Route::get('/crearDescuentos', [DescuentoController::class, 'create'])->name('descuentos.create');      
 Route::post('/descuentos', [DescuentoController::class, 'store'])->name('descuentos.store');
+Route::put('/descuentos/{id}', [DescuentoController::class, 'update'])->name('descuentos.update');
+Route::get('/descuentos/{id}/edit', [DescuentoController::class, 'edit'])->name('descuentos.edit');
+Route::delete("descuentos/{id}", [DescuentoController::class, 'destroy'])->name('descuentos.destroy');
 Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedores.index'); 
 
 Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index'); 

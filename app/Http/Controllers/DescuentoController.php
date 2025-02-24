@@ -37,4 +37,44 @@ class DescuentoController extends Controller
         }
     }
     
+    public function update(Request $request, $id)
+    {
+        // Buscar el descuento por ID
+        $descuento = Descuento::findOrFail($id);
+    
+
+        // Actualizar los atributos del descuento
+        $descuento->nombre = $request->input('nombre');
+        $descuento->porcentaje = $request->input('porcentaje');
+        $descuento->fecha_finalizacion = $request->input('fecha_finalizacion');
+        $descuento->descripcion = $request->input('descripcion');
+    
+        // Guardar los cambios
+        $descuento->save();
+    
+        // Redirigir a la lista de descuentos con un mensaje de éxito
+        return redirect()->route('descuentos.index')->with('success', 'Descuento actualizado correctamente.');
+    }
+
+    public function edit($id)
+    {
+     
+            // Busca el descuento por ID
+            $descuento = Descuento::findOrFail($id);
+        
+            // Devuelve la vista de editar descuento con el descuento encontrado
+            return view('vista_editar_descuento', compact('descuento'));
+        
+        
+    }
+
+    public function destroy($id)
+    {
+        $descuento = Descuento::findOrFail($id); // Busca el producto por ID
+
+        $descuento->delete(); // Elimina el producto
+
+        return redirect()->route('descuentos.index')->with('success', 'Descuento eliminado correctamente.');
+    }
+    
 }

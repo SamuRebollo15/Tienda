@@ -47,8 +47,9 @@
                             <td class="p-3 border">{{ $descuento->fecha_finalizacion }}</td>
                             <td class="p-3 border">{{ $descuento->descripcion }}</td>
                             <td class="p-3 border flex gap-2">
-                                <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
-                                <form action="" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este descuento?');">
+                                <a href="{{ route('descuentos.edit', $descuento->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
+
+                                <form action="{{ route('descuentos.destroy', $descuento->id) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este descuento?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded text-sm">Eliminar</button>
