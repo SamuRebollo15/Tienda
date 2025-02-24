@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\DescuentoController;
+use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\DireccionController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -31,13 +33,6 @@ Route::get('/hola', function () {
     return 'Hola, ' . auth()->user()->email;
 })->middleware('auth');
 
-Route::get('/gestion2', function () {
-    return view('vista_gestionar_proveedores', ['proveedores' => App\Models\Proveedor::all()]);
-})->middleware('auth');
-Route::get('/gestion3', function () {
-    return view('vista_gestionar_direcciones', ['direcciones' => App\Models\Direccion::all()]);
-})->middleware('auth');
-
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
 Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
 Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
@@ -46,6 +41,9 @@ Route::get('/crearProducto', [ProductoController::class, 'crearProductoVista']) 
 
 Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');    
 
+Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedores.index'); 
+
+Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index'); 
 
 
 
