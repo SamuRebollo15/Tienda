@@ -10,7 +10,7 @@
     <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-2xl font-bold">Gestión de Productos</h1>
-            <a href="#" class="bg-green-500 text-white px-4 py-2 rounded text-sm">Agregar Producto</a>
+            <a href="/crearProducto" class="bg-green-500 text-white px-4 py-2 rounded text-sm">Agregar Producto</a>
         </div>
         @if(session('success'))
         <div class="bg-green-500 text-white p-4 rounded mb-4">

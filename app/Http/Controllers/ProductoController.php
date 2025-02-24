@@ -94,14 +94,14 @@ class ProductoController extends Controller
             'nombre' => 'required|string|max:255',
             'precio' => 'required|numeric|min:0',
             'proveedor_id' => 'required|exists:proveedores,id',
-            'descuento_id' => 'nullable|exists:descuentos,id',
+            'descuento_id' => 'nullable|exists:descuento,id',
             'descripcion' => 'nullable|string',
             'cantidad' => 'required|integer|min:0',
         ]);
 
         $producto = Producto::create($request->all());
-        
-        return response()->json(["mensaje" => "Producto creado exitosamente", "producto" => $producto], 201);
+        return redirect()->route('productos.index')->with('success', 'Producto creado exitosamente.');
+       
     }
 
     public function update(Request $request, $id)
@@ -118,5 +118,13 @@ class ProductoController extends Controller
         $producto->save(); // Guarda los cambios
         return redirect()->route('productos.index')->with('success', 'Producto actualizado correctamente.');
     }
+
+    public function crearProductoVista()
+{
+    $descuentos = \App\Models\Descuento::all();
+    $proveedores = \App\Models\Proveedor::all();
+    
+    return view('vista_crear_producto', compact('descuentos', 'proveedores'));
+}
     
 }
