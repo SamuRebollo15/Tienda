@@ -9,7 +9,7 @@ class Descuento extends Model
 {
     use HasFactory;
 
-    protected $table = 'descuentos';
+    protected $table = 'descuento';
 
     protected $fillable = ['nombre', 'porcentaje', 'fecha_finalizacion', 'descripcion'];
 }

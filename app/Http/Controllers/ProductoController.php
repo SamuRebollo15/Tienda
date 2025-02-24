@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Proveedor;
+use App\Models\Descuento;
 use Illuminate\Http\Request;
+
 
 class ProductoController extends Controller
 {
@@ -11,8 +14,18 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::all();
-        return response()->json($productos);
+        return view('vista_gestionar_productos', ['productos' => $productos]); // Corrige el cierre de la función
     }
+
+    public function edit($id)
+{
+    $producto = Producto::findOrFail($id); // Busca el producto por ID
+    $proveedores = Proveedor::all(); // Obtiene la lista de proveedores
+    $descuentos = Descuento::all(); // Obtiene la lista de descuentos
+
+    return view('vista_editar_producto', compact('producto', 'proveedores', 'descuentos'));
+}
+
 
     // Ruta para filtrar productos por nombre
     public function filtrarPorNombre(Request $request)
@@ -73,4 +86,45 @@ class ProductoController extends Controller
         $productos = Producto::where('proveedor_id', $proveedorId)->get();
         return response()->json($productos);
     }
+
+    // Ruta para almacenar un nuevo producto
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'precio' => 'required|numeric|min:0',
+            'proveedor_id' => 'required|exists:proveedores,id',
+            'descuento_id' => 'nullable|exists:descuento,id',
+            'descripcion' => 'nullable|string',
+            'cantidad' => 'required|integer|min:0',
+        ]);
+
+        $producto = Producto::create($request->all());
+        return redirect()->route('productos.index')->with('success', 'Producto creado exitosamente.');
+       
+    }
+
+    public function update(Request $request, $id)
+    {
+        $producto = Producto::findOrFail($id); // Busca el producto por ID
+    
+        $producto->nombre = $request->input('nombre');
+        $producto->precio = $request->input('precio');
+        $producto->proveedor_id = $request->input('proveedor_id');
+        $producto->descuento_id = $request->input('descuento_id');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->cantidad = $request->input('cantidad');
+    
+        $producto->save(); // Guarda los cambios
+        return redirect()->route('productos.index')->with('success', 'Producto actualizado correctamente.');
+    }
+
+    public function crearProductoVista()
+{
+    $descuentos = \App\Models\Descuento::all();
+    $proveedores = \App\Models\Proveedor::all();
+    
+    return view('vista_crear_producto', compact('descuentos', 'proveedores'));
+}
+    
 }
