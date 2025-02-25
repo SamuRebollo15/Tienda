@@ -19,7 +19,7 @@ class UsuarioSeeder extends Seeder
             'rol' => 'admin',
             'nombre_completo' => 'Juan Pérez',
             'direccion_id' => 1,
-            'imagen_usuario' => 'juan.jpg',
+            'imagen_usuario' => 'imagenes/fotoUsuario1.jpg',
         ]);
         Usuario::create([
             'usuario' => 'mariagonzalez',

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\DireccionController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -32,6 +33,14 @@ require __DIR__.'/auth.php';
 Route::get('/hola', function () {
     return 'Hola, ' . auth()->user()->email;
 })->middleware('auth');
+
+Route::get('/pruebaImagen', function () {
+    return view('pruebaImagen');
+})->middleware('auth');
+Route::post('/usuarios/subir-imagen', [UsuarioController::class, 'subirImagen'])
+    ->name('usuarios.subirImagen');
+
+
 
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
 Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
