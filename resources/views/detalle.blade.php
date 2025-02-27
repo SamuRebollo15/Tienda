@@ -12,18 +12,19 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Imagen del producto -->
             <div class="flex justify-center">
-                <img src="https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/202409/26/00118007000906____3__600x600.jpg" alt="Producto" class="rounded-lg shadow-md w-full">
+                <img src="{{ asset('imagenes/' . $producto->imagen_producto) }}" alt="{{ $producto->nombre }}" class="rounded-lg shadow-md w-full">
             </div>
 
             <!-- Información del producto -->
             <div class="flex flex-col justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-900">Nombre del Producto</h1>
-                    <p class="text-gray-600 text-sm mt-1">Proveedor: <span class="font-medium">Proveedor XYZ</span></p>
-                    <p class="text-xl font-semibold text-green-600 mt-4">$199.99</p>
+                    <h1 class="text-3xl font-bold text-gray-900">{{ $producto->nombre }}</h1>
+                    <p class="text-gray-600 text-sm mt-1">Proveedor: 
+                        <span class="font-medium">{{ $producto->proveedor->nombre ?? 'Desconocido' }}</span>
+                    </p>
+                    <p class="text-xl font-semibold text-green-600 mt-4">${{ number_format($producto->precio, 2) }}</p>
                     <p class="text-gray-700 mt-4">
-                        Este es un producto de alta calidad con características impresionantes.
-                        Perfecto para cualquier ocasión y disponible a un precio accesible.
+                        {{ $producto->descripcion }}
                     </p>
                 </div>
 
