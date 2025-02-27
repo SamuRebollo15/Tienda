@@ -25,7 +25,17 @@
             </div>
         @endif
 
-        <input type="text" id="search" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Buscar producto...">
+        <!-- Contenedor de los tres buscadores -->
+        <div class="flex space-x-4 mb-4">
+            <!-- Buscar por nombre -->
+            <input type="text" id="searchName" class="w-1/3 p-2 border border-gray-300 rounded" placeholder="Buscar por nombre...">
+            
+            <!-- Buscar por precio -->
+            <input type="number" id="searchPrice" class="w-1/3 p-2 border border-gray-300 rounded" placeholder="Mostrar productos hasta precio...">
+
+            <!-- Buscar por cantidad -->
+            <input type="number" id="searchQuantity" class="w-1/3 p-2 border border-gray-300 rounded" placeholder="Mostrar productos hasta cantidad...">
+        </div>
 
         <div class="overflow-x-auto">
             <table class="w-full border border-gray-300 text-left">
@@ -53,12 +63,12 @@
                                     <span class="text-gray-500 italic">Sin imagen</span>
                                 @endif
                             </td>
-                            <td class="p-3">{{ $producto->nombre }}</td>
-                            <td class="p-3">{{ $producto->precio }}</td>
+                            <td class="p-3 nombre">{{ $producto->nombre }}</td>
+                            <td class="p-3 precio">{{ $producto->precio }}</td>
                             <td class="p-3">{{ $producto->proveedor_id }}</td>
                             <td class="p-3">{{ $producto->descuento_id ?? 'Sin descuento' }}</td>
                             <td class="p-3">{{ $producto->descripcion }}</td>
-                            <td class="p-3">{{ $producto->cantidad }}</td>
+                            <td class="p-3 cantidad">{{ $producto->cantidad }}</td>
                             <td class="p-3 flex space-x-2">
                                 <a href="{{ route('productos.edit', $producto->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
 
@@ -76,12 +86,33 @@
     </div>
 
     <script>
-        document.getElementById('search').addEventListener('keyup', function() {
-            let value = this.value.toLowerCase();
-            let rows = document.querySelectorAll('#productTable tr');
-            rows.forEach(row => {
-                row.style.display = row.textContent.toLowerCase().includes(value) ? '' : 'none';
-            });
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchNameInput = document.getElementById('searchName');
+            const searchPriceInput = document.getElementById('searchPrice');
+            const searchQuantityInput = document.getElementById('searchQuantity');
+            const rows = document.querySelectorAll('#productTable tr');
+
+            function filtrarProductos() {
+                let searchName = searchNameInput.value.toLowerCase();
+                let maxPrice = parseFloat(searchPriceInput.value) || Infinity;
+                let maxQuantity = parseFloat(searchQuantityInput.value) || Infinity;
+
+                rows.forEach(row => {
+                    let productName = row.querySelector('.nombre').textContent.toLowerCase();
+                    let productPrice = parseFloat(row.querySelector('.precio').textContent) || 0;
+                    let productQuantity = parseFloat(row.querySelector('.cantidad').textContent) || 0;
+
+                    let matchesName = productName.includes(searchName);
+                    let matchesPrice = productPrice <= maxPrice;
+                    let matchesQuantity = productQuantity <= maxQuantity;
+
+                    row.style.display = (matchesName && matchesPrice && matchesQuantity) ? '' : 'none';
+                });
+            }
+
+            searchNameInput.addEventListener('keyup', filtrarProductos);
+            searchPriceInput.addEventListener('input', filtrarProductos);
+            searchQuantityInput.addEventListener('input', filtrarProductos);
         });
     </script>
 </body>
