@@ -67,3 +67,9 @@ Route::get('/productos/filtrar/precio-max', [ProductoController::class, 'filtrar
 Route::get('/productos/filtrar/rango-precio', [ProductoController::class, 'filtrarPorRangoPrecio']); // Filtrar por rango de precio
 Route::get('/productos/ordenar/precio', [ProductoController::class, 'ordenarPorPrecio']); // Ordenar por precio
 Route::get('/productos/filtrar/proveedor', [ProductoController::class, 'filtrarPorProveedor']); // Filtrar por proveedor
+
+
+Route::get('/detalle-producto', function () {
+    return view('detalle');
+})->name('detalle-producto');
+
