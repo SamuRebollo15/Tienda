@@ -25,6 +25,7 @@ class ProductosSeeder extends Seeder
             'descripcion' => 'Laptop HP con procesador Intel i7, 16GB RAM y 512GB SSD.',
             'descripcionIngles' => 'HP laptop with Intel i7 processor, 16GB RAM and 512GB SSD.',
             'cantidad' => 20,
+            'imagen_producto' => 'portatil.png',
         ]);
 
         Producto::create([
@@ -36,6 +37,7 @@ class ProductosSeeder extends Seeder
             'descripcion' => 'Smartphone con pantalla AMOLED de 6.5 pulgadas, 128GB de almacenamiento.',
             'descripcionIngles' => 'Smartphone with 6.5-inch AMOLED display, 128GB storage.',
             'cantidad' => 30,
+            'imagen_producto' => 'Samsumg.png',
         ]);
 
         Producto::create([
@@ -47,6 +49,7 @@ class ProductosSeeder extends Seeder
             'descripcion' => 'Monitor LG con resolución 4K y tecnología IPS.',
             'descripcionIngles' => 'LG monitor with 4K resolution and IPS technology.',
             'cantidad' => 15,
+            'imagen_producto' => 'Monitor.png',
         ]);
 
         Producto::create([
@@ -58,6 +61,7 @@ class ProductosSeeder extends Seeder
             'descripcion' => 'Teclado mecánico con retroiluminación RGB.',
             'descripcionIngles' => 'Mechanical keyboard with RGB backlighting.',
             'cantidad' => 50,
+            'imagen_producto' => 'teclado.png',
         ]);
 
         // Reactivar restricciones de claves foráneas
