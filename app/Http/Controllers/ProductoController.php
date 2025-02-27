@@ -17,6 +17,13 @@ class ProductoController extends Controller
         return view('vista_gestionar_productos', ['productos' => $productos]); // Corrige el cierre de la función
     }
 
+    public function home()
+    {
+        $productos = Producto::all();
+        return view('home', ['productos' => $productos]); // Corrige el cierre de la función
+    }
+
+
     public function edit($id)
     {
         $producto = Producto::findOrFail($id); // Busca el producto por ID
@@ -108,11 +115,41 @@ class ProductoController extends Controller
             'descuento_id' => 'nullable|exists:descuento,id',
             'descripcion' => 'nullable|string',
             'cantidad' => 'required|integer|min:0',
+            'imagen_producto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        $producto = Producto::create($request->all());
+    
+        // Crear un nuevo producto
+        $producto = new Producto();
+        $producto->nombre = $request->input('nombre');
+        $producto->precio = $request->input('precio');
+        $producto->proveedor_id = $request->input('proveedor_id');
+        $producto->descuento_id = $request->input('descuento_id');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->cantidad = $request->input('cantidad');
+    
+        // Manejo de la imagen
+        if ($request->hasFile('imagen_producto')) {
+            $imagen = $request->file('imagen_producto');
+            $nombreArchivo = pathinfo($imagen->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $imagen->getClientOriginalExtension();
+    
+            // Verificar si el archivo ya existe y agregar un carácter aleatorio si es necesario
+            while (Storage::disk('public')->exists("{$nombreArchivo}.{$extension}")) {
+                $caracterAleatorio = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 1);
+                $nombreArchivo .= $caracterAleatorio;
+            }
+    
+            // Guardar la imagen en la carpeta "public"
+            $ruta = $imagen->storeAs("", "{$nombreArchivo}.{$extension}", "public");
+    
+            // Guardar el nombre del archivo en el producto
+            $producto->imagen_producto = "{$nombreArchivo}.{$extension}";
+        }
+    
+        // Guardar el producto en la base de datos
+        $producto->save();
+    
         return redirect()->route('productos.index')->with('success', 'Producto creado exitosamente.');
-       
     }
 
     public function update(Request $request, $id)

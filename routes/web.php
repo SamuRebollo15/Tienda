@@ -6,12 +6,9 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\DireccionController;
-use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductoController::class, 'home'])->name('productos.home');
 
 Route::get('/boton', function () {
     return view('pruebaboton');
@@ -34,27 +31,14 @@ Route::get('/hola', function () {
     return 'Hola, ' . auth()->user()->email;
 })->middleware('auth');
 
-Route::get('/pruebaImagen', function () {
-    return view('pruebaImagen');
-})->middleware('auth');
-Route::post('/usuarios/subir-imagen', [UsuarioController::class, 'subirImagen'])
-    ->name('usuarios.subirImagen');
-
-
-
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
 Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
 Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
 Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
 Route::get('/crearProducto', [ProductoController::class, 'crearProductoVista']) ->name('productos.create');
-Route::delete("productos/{id}", [ProductoController::class, 'destroy'])->name('productos.destroy');
 
-Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');
-Route::get('/crearDescuentos', [DescuentoController::class, 'create'])->name('descuentos.create');      
-Route::post('/descuentos', [DescuentoController::class, 'store'])->name('descuentos.store');
-Route::put('/descuentos/{id}', [DescuentoController::class, 'update'])->name('descuentos.update');
-Route::get('/descuentos/{id}/edit', [DescuentoController::class, 'edit'])->name('descuentos.edit');
-Route::delete("descuentos/{id}", [DescuentoController::class, 'destroy'])->name('descuentos.destroy');
+Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');    
+
 Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedores.index'); 
 
 Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index'); 
@@ -65,12 +49,10 @@ Route::get('/logout', function () {
    
 
 
-
-    // Desloguear al usuario
     Auth::logout();
 
 
-    return "Fuiste deslogueado";
+    return redirect('/');
 })->middleware('auth')->name('logout');
 
 
