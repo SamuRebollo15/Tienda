@@ -59,8 +59,33 @@
     <h1>Estas logueado</h1>
     <!-- Barra de navegación -->
     <nav class="bg-white shadow-md p-4 flex justify-between items-center relative">
+        @if (session('idioma', 'es') == 'es')
+            <h1>Hola Mundo</h1>
+        @else
+            <h1>Hello World</h1>
+        @endif
+
+       
+        
+        
         <h1 class="text-2xl font-bold">Tienda Laravel</h1>
         <div class="flex items-center space-x-4 relative -left-[100px]">
+
+            <div class="relative inline-block text-left">
+                <button id="idiomasButton" class="bg-blue-500 text-white px-4 py-2 rounded flex items-center">
+                    <span class="mr-2">Idiomas</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+            
+                <div id="idiomasMenu" class="hidden absolute mt-2 w-40 bg-white border border-gray-300 rounded shadow-lg z-10">
+                    <a href="/cambiar-idioma/es" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Español</a>
+                    <a href="/cambiar-idioma/en" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Ingles</a>
+                </div>
+            </div>
+
+
             <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="Usuario" class="w-8 h-8 rounded-full">
             <span class="font-semibold">Samuel</span>
             <div class="relative inline-block text-left">
@@ -72,7 +97,7 @@
                 </button>
 
                 <div id="dropdownMenu" class="hidden absolute mt-2 w-40 bg-white border border-gray-300 rounded shadow-lg z-10">
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Perfil</a>
+                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Perfil</a>
                     <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Pedidos</a>
                     <a href="{{ route('logout') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Cerrar sesión</a>
                 </div>
@@ -113,6 +138,9 @@
         document.getElementById('dropdownButton').addEventListener('click', function() {
             document.getElementById('dropdownMenu').classList.toggle('hidden');
         });
+        document.getElementById('idiomasButton').addEventListener('click', function () {
+        document.getElementById('idiomasMenu').classList.toggle('hidden');
+    });
 
         document.addEventListener('click', function(event) {
             if (!document.getElementById('dropdownButton').contains(event.target)) {
@@ -151,7 +179,8 @@
                     <p class="text-gray-700 mt-2">$ {{ number_format($producto->precio, 2) }}</p>
                 </div>
                 <div class="botones">
-                    <button class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
+                    <button onclick="window.location.href='{{ route('login') }}'"
+                     class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Info</button>
                   
                 </div>
             </div>

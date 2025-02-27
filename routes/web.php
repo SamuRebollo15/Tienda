@@ -7,7 +7,7 @@ use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\DireccionController;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Session;
 Route::get('/', [ProductoController::class, 'home'])->name('productos.home');
 
 Route::get('/boton', function () {
@@ -74,3 +74,9 @@ Route::get('/detalle-producto', function () {
     return view('detalle');
 })->name('detalle-producto');
 
+
+
+Route::get('/cambiar-idioma/{lang}', function ($lang) {
+    Session::put('idioma', $lang);
+    return back(); // Redirige a la página anterior
+});
