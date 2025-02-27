@@ -23,6 +23,16 @@ class ProductoController extends Controller
         return view('home', ['productos' => $productos]); // Corrige el cierre de la función
     }
 
+    public function detalle($id)
+    {
+        $producto = Producto::findOrFail($id); // Busca el producto por ID
+        $proveedores = Proveedor::all(); // Obtiene la lista de proveedores
+        $descuentos = Descuento::all(); // Obtiene la lista de descuentos
+
+        return view('detalle', compact('producto', 'proveedores', 'descuentos'));
+    }
+
+
 
     public function edit($id)
     {
