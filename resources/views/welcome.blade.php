@@ -72,9 +72,9 @@
                 </button>
 
                 <div id="dropdownMenu" class="hidden absolute mt-2 w-40 bg-white border border-gray-300 rounded shadow-lg z-10">
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Opción 1</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Opción 2</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Opción 3</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Perfil</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Pedidos</a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Cerrar sesión</a>
                 </div>
             </div>
 
@@ -228,7 +228,7 @@
             <!-- Producto 1 -->
             <div class="producto bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="overlay"></div>
-                <img src="https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/202409/26/00118007000906____3__600x600.jpg" alt="Producto 1" class="h-64 w-full object-cover">
+                <img src="https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/202409/26/00118007000906____3__600x600.jpg" alt="Producto 1" class="h-64  object-cover">
                 <div class="p-4">
                     <h3 class="text-lg font-bold">Producto 1</h3>
                     <p class="text-gray-700 mt-2">$ 199.99</p>
