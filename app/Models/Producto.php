@@ -11,7 +11,7 @@ class Producto extends Model
 
     protected $table = 'productos';
 
-    protected $fillable = ['nombre', 'precio', 'proveedor_id', 'descuento_id', 'descripcion', 'cantidad'];
+    protected $fillable = ['nombre', 'precio', 'proveedor_id', 'descuento_id', 'descripcion', 'cantidad','imagen_producto'];
 
     public function proveedor()
     {

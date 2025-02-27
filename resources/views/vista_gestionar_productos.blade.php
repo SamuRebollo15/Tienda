@@ -12,25 +12,27 @@
             <h1 class="text-2xl font-bold">Gestión de Productos</h1>
             <a href="/crearProducto" class="bg-green-500 text-white px-4 py-2 rounded text-sm">Agregar Producto</a>
         </div>
+
         @if(session('error'))
-        <div class="bg-red-500 text-white p-4 rounded mb-4">
-            {{ session('error') }}
-        </div>
-    @endif
+            <div class="bg-red-500 text-white p-4 rounded mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
     
-    @if(session('success'))
-        <div class="bg-green-500 text-white p-4 rounded mb-4">
-            {{ session('success') }}
-        </div>
-    @endif
-        
+        @if(session('success'))
+            <div class="bg-green-500 text-white p-4 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <input type="text" id="search" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Buscar producto...">
-        
+
         <div class="overflow-x-auto">
             <table class="w-full border border-gray-300 text-left">
                 <thead class="bg-gray-800 text-white">
                     <tr>
                         <th class="p-3">ID</th>
+                        <th class="p-3">Imagen</th>
                         <th class="p-3">Nombre</th>
                         <th class="p-3">Precio</th>
                         <th class="p-3">Proveedor</th>
@@ -44,10 +46,17 @@
                     @foreach($productos as $producto)
                         <tr class="hover:bg-gray-100">
                             <td class="p-3">{{ $producto->id }}</td>
+                            <td class="p-3 text-center">
+                                @if($producto->imagen_producto)
+                                    <img src="{{ asset('imagenes/' . $producto->imagen_producto) }}" alt="Imagen del producto" class="w-16 h-16 object-cover rounded">
+                                @else
+                                    <span class="text-gray-500 italic">Sin imagen</span>
+                                @endif
+                            </td>
                             <td class="p-3">{{ $producto->nombre }}</td>
                             <td class="p-3">{{ $producto->precio }}</td>
                             <td class="p-3">{{ $producto->proveedor_id }}</td>
-                            <td class="p-3">{{ $producto->descuento_id }}</td>
+                            <td class="p-3">{{ $producto->descuento_id ?? 'Sin descuento' }}</td>
                             <td class="p-3">{{ $producto->descripcion }}</td>
                             <td class="p-3">{{ $producto->cantidad }}</td>
                             <td class="p-3 flex space-x-2">
@@ -58,7 +67,6 @@
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded text-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Eliminar</button>
                                 </form>
-                                
                             </td>
                         </tr>
                     @endforeach
