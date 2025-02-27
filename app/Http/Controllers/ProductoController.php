@@ -126,5 +126,6 @@ class ProductoController extends Controller
     
     return view('vista_crear_producto', compact('descuentos', 'proveedores'));
 }
+
     
 }
