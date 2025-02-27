@@ -36,6 +36,7 @@ Route::post('/productos', [ProductoController::class, 'store'])->name('productos
 Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
 Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
 Route::get('/crearProducto', [ProductoController::class, 'crearProductoVista']) ->name('productos.create');
+Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
 Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');    
 
