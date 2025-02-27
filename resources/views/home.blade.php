@@ -72,8 +72,12 @@
                 </button>
 
                 <div id="dropdownMenu" class="hidden absolute mt-2 w-40 bg-white border border-gray-300 rounded shadow-lg z-10">
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Perfil</a>
+                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Perfil</a>
                     <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Pedidos</a>
+                    @if(auth()->user()->rol === 'admin')
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Administracion</a>
+                     @endif
+
                     <a href="{{ route('logout') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Cerrar sesión</a>
                 </div>
             </div>
