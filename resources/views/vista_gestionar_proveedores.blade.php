@@ -37,7 +37,7 @@
                             <td class="p-3 border">{{ $proveedor->telefono }}</td>
                             <td class="p-3 border flex gap-2">
                                 <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
-                                <form action="" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este proveedor?');">
+                                <form action="{{ route('proveedores.destroy', $proveedor->id) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este proveedor?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded text-sm">Eliminar</button>

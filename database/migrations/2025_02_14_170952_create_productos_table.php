@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('nombreIngles')->nullable();
             $table->decimal('precio', 10, 2);
-            $table->unsignedBigInteger('proveedor_id');
+            $table->unsignedBigInteger('proveedor_id')->nullable();
             $table->unsignedBigInteger('descuento_id')->nullable();
             $table->text('descripcion')->nullable();
             $table->text('descripcionIngles')->nullable();

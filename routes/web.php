@@ -46,7 +46,7 @@ Route::get('/productos/{id}/detalle', [ProductoController::class, 'detalle'])->n
 Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');    
 
 Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedores.index'); 
-
+Route::delete('/proveedores/{id}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
 Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index'); 
 
 

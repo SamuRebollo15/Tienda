@@ -49,6 +49,7 @@
                         <th class="p-3">Descuento</th>
                         <th class="p-3">Descripción</th>
                         <th class="p-3">Cantidad</th>
+                        <th class="p-3">Disponible</th>
                         <th class="p-3">Acciones</th>
                     </tr>
                 </thead>
@@ -65,11 +66,23 @@
                             </td>
                             <td class="p-3 nombre">{{ $producto->nombre }}</td>
                             <td class="p-3 precio">{{ $producto->precio }}</td>
-                            <td class="p-3">{{ $producto->proveedor_id }}</td>
+                            <td class="p-3 {{ $producto->proveedor_id ? '' : 'text-red-500 font-semibold' }}">
+                            {{ $producto->proveedor_id ?? 'Sin proveedor' }}
+                        </td>
+
                             <td class="p-3">{{ $producto->descuento_id ?? 'Sin descuento' }}</td>
                             <td class="p-3">{{ $producto->descripcion }}</td>
                             <td class="p-3 cantidad">{{ $producto->cantidad }}</td>
-                            <td class="p-3 flex space-x-2">
+                            <td>
+                                @if(is_null($producto->proveedor_id))
+                                <span class="text-red-500 font-semibold">No disponible</span>
+                                @else
+                                
+                                    <span class="text-green-500 font-semibold">Disponible</span>
+                                @endif
+                            </td>
+                            <td class="p-3 text-center">
+                            <div class="flex justify-center space-x-2">
                                 <a href="{{ route('productos.edit', $producto->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
 
                                 <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" class="inline">
@@ -77,7 +90,9 @@
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded text-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Eliminar</button>
                                 </form>
-                            </td>
+                            </div>
+                        </td>
+
                         </tr>
                     @endforeach
                 </tbody>
