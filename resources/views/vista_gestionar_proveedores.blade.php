@@ -10,7 +10,7 @@
     <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-2xl font-bold">Gestión de Proveedores</h1>
-            <a href="#" class="bg-green-500 text-white px-4 py-2 rounded text-sm">Agregar Proveedor</a>
+            <a href="{{ route('proveedores.create')}}" class="bg-green-500 text-white px-4 py-2 rounded text-sm">Agregar Proveedor</a>
         </div>
 
         <input type="text" id="search" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Buscar proveedor...">

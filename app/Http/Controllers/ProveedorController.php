@@ -22,5 +22,31 @@ class ProveedorController extends Controller
 
         return redirect()->route('proveedores.index')->with('success', 'Proveedor eliminado correctamente.');
     }
+ 
+    public function crearProveedorVista()
+    {
+        
+        return view('vista_crear_provedores');
+    }
    
+
+    public function store(Request $request)
+    {
+        // Validación de datos
+        $validated = $request->validate([
+            'nombre_completo' => 'required|string|max:255',
+            'direccion' => 'nullable|string|max:255',
+            'descripcion' => 'nullable|string',
+            'telefono' => 'nullable|string|max:15',
+        ]);
+
+        // Crear proveedor
+        $proveedor = Proveedor::create($validated);
+
+        return response()->json([
+            'message' => 'Proveedor creado con éxito',
+            'proveedor' => $proveedor
+        ], 201);
+    }
+
 }
