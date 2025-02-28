@@ -40,5 +40,27 @@ class UsuarioController extends Controller
         return back()->with('success', 'Imagen subida correctamente.');
     }
 
-   
+
+    public function quitarImagen()
+    {
+      
+        // Obtener el usuario autenticado
+        $usuario = auth()->user();
+  
+
+        
+        
+      
+        $usuario->imagen_usuario = null;
+
+        $usuario->save(); 
+
+        return back()->with('success', 'Imagen eliminada correctamente.');
+    }
+
+
+    public function admin()
+    {
+        return view('administracion'); 
+    }
 }

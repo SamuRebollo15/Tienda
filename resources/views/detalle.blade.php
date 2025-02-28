@@ -28,17 +28,22 @@
                     </p>
                 </div>
 
-                <!-- Selector de cantidad y botón de compra -->
+               <!-- Selector de cantidad y botón de compra -->
                 <div class="mt-6">
                     <label for="cantidad" class="text-gray-700 font-medium">Cantidad:</label>
                     <div class="flex items-center space-x-2 mt-2">
-                        <input type="number" id="cantidad" min="1" value="1"
-                            class="w-16 border border-gray-300 p-2 rounded-lg text-center text-gray-900">
-                        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-                            Añadir al carrito
-                        </button>
+                        <form action="{{ route('pedido.agregar.actual') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                            <input type="number" name="cantidad" id="cantidad" min="1" value="1"
+                                class="w-16 border border-gray-300 p-2 rounded-lg text-center text-gray-900">
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                                Añadir al carrito
+                            </button>
+                        </form>
                     </div>
                 </div>
+
 
                 <!-- Botón de volver -->
                 <div class="mt-6">

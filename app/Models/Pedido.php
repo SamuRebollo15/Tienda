@@ -13,6 +13,9 @@ class Pedido extends Model
 
     protected $fillable = ['fecha_compra', 'fecha_aproximada_entrega', 'usuario_id'];
 
+    protected $casts = [
+        'fecha_aproximada_entrega' => 'datetime',
+    ];
     // Relación con el modelo Usuario
     public function usuario()
     {

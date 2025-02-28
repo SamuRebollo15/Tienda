@@ -33,18 +33,37 @@
             <div class="p-6 sm:p-8 bg-white shadow-2xl rounded-lg">
                 <h3 class="text-lg font-medium mb-4">Avatar del Usuario</h3>
                 <div class="flex items-center justify-center mb-6">
-                    <div class="relative">
+                    <div class="relative w-60 h-60">
                         <img src="{{ $user->imagen_usuario ? asset('imagenes/' . $user->imagen_usuario) : 'https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png' }}" 
                              alt="Usuario" 
                              class="w-60 h-60 rounded-full border-2 border-black object-cover shadow-lg">
+                        
+                        @if(empty($user->imagen_usuario))
+                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-full">
+                                <span class="text-white font-semibold">Sin imagen</span>
+                            </div>
+                        @endif
                     </div>
-                    <button type="button" 
-                            class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600"
-                            onclick="document.getElementById('imagen_usuario').click()">
-                        Cambiar Imagen
-                    </button>
+                
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 ml-8"> <!-- Aumentado margen izquierdo -->
+                        <button type="button" 
+                                class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600"
+                                onclick="document.getElementById('imagen_usuario').click()">
+                            Cambiar Imagen
+                        </button>
+                
+                        <form action="{{ route('usuario.quitar.imagen') }}" method="GET" 
+                              onsubmit="return confirm('¿Estás seguro de que quieres quitar la imagen?');">
+                            @csrf
+                            <button type="submit" 
+                                    class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-red-600">
+                                Quitar Imagen
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <form action="" method="POST" enctype="multipart/form-data" class="hidden">
+                
+                <form action="{{ route('usuario.subir.imagen') }}" method="POST" enctype="multipart/form-data" class="hidden">
                     @csrf
                     <input type="file" name="imagen_usuario" id="imagen_usuario" class="hidden" accept="image/*" onchange="this.form.submit()">
                 </form>

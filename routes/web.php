@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\DescuentoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\DireccionController;
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 Route::get('/', [ProductoController::class, 'home'])->name('productos.home');
@@ -13,7 +15,10 @@ Route::get('/', [ProductoController::class, 'home'])->name('productos.home');
 Route::get('/boton', function () {
     return view('pruebaboton');
 });
-
+Route::get('/crear-pedido', [PedidoController::class, 'crearPedido'])->name('crear.pedido');
+Route::post('/pedido/carrito', [PedidoController::class, 'añadirProductoPedidoActual'])->name('pedido.agregar.actual');
+Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
+Route::get('/administracion', [UsuarioController::class, 'admin'])->name('usuarios.administracion'); 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -80,3 +85,6 @@ Route::get('/cambiar-idioma/{lang}', function ($lang) {
     Session::put('idioma', $lang);
     return back(); // Redirige a la página anterior
 });
+
+Route::post('/subir-imagen', [UsuarioController::class, 'subirImagen'])->name('usuario.subir.imagen');
+Route::get('/quitar-imagen', [UsuarioController::class, 'quitarImagen'])->name('usuario.quitar.imagen');

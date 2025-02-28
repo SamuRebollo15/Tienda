@@ -98,9 +98,9 @@
 
                 <div id="dropdownMenu" class="hidden absolute mt-2 w-40 bg-white border border-gray-300 rounded shadow-lg z-10">
                     <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Perfil</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Pedidos</a>
+                    <a href="{{ route( 'pedidos.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Pedidos</a>
                     @if(auth()->user()->rol === 'admin')
-                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Administracion</a>
+                    <a href="{{ route( 'usuarios.administracion') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Administracion</a>
                      @endif
 
                     <a href="{{ route('logout') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Cerrar sesión</a>
@@ -162,9 +162,12 @@
         <h1 class="text-2xl font-bold">Tienda Laravel</h1>
         <div>
 
-            <button id="botonLogin" href="/login" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Iniciar sesión</button>
+            <button id="botonLogin" href="{{ route(  'login') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Iniciar sesión</button>
 
-            <button class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">Registrarse</button>
+            <button onclick="window.location.href='{{ route('register') }}'" 
+            class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+            Registrarse
+        </button>
         </div>
     </nav>
 

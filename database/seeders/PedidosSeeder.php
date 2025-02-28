@@ -20,7 +20,7 @@ class PedidosSeeder extends Seeder
         Pedido::create([
             'usuario_id' => 1,
             'fecha_compra' => Carbon::now()->subDays(5)->format('Y-m-d'),
-            'fecha_aproximada_entrega' => Carbon::now()->addDays(10)->format('Y-m-d'),
+            'fecha_aproximada_entrega' => Carbon::now()->subDays(3)->format('Y-m-d'),
         ]);
 
         Pedido::create([
