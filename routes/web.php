@@ -48,6 +48,10 @@ Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuent
 Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedores.index'); 
 Route::delete('/proveedores/{id}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
 Route::get('/crearProveedor', [ProveedorController::class, 'crearProveedorVista']) ->name('proveedores.create');
+Route::post('/proveedores', [ProveedorController::class, 'store'])->name('proveedores.store');
+Route::get('/proveedores/{id}/edit', [ProveedorController::class, 'edit'])->name('proveedores.edit');
+Route::put('/proveedores/{id}', [ProveedorController::class, 'update'])->name('proveedores.update');
+
 Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index'); 
 
 

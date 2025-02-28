@@ -43,10 +43,41 @@ class ProveedorController extends Controller
         // Crear proveedor
         $proveedor = Proveedor::create($validated);
 
-        return response()->json([
-            'message' => 'Proveedor creado con éxito',
-            'proveedor' => $proveedor
-        ], 201);
+       return redirect()->route('proveedores.index')->with('success', 'Producto creado exitosamente.');
     }
+
+    public function edit($id)
+    {
+        $proveedor = Proveedor::findOrFail($id); // Busca el proveedor por ID
+    
+        return view('vista_editar_provedores', compact('proveedor'));
+    }
+    
+    public function update(Request $request, $id)
+{
+    // Validación de los datos recibidos
+    $request->validate([
+        'nombre_completo' => 'required|string|max:255',
+        'telefono' => 'nullable|string|max:20',
+        'direccion' => 'nullable|string|max:255',
+        'descripcion' => 'nullable|string',
+    ]);
+
+    // Buscar el proveedor por ID
+    $proveedor = Proveedor::findOrFail($id);
+
+    // Actualizar los datos
+    $proveedor->update([
+        'nombre_completo' => $request->nombre_completo,
+        'telefono' => $request->telefono,
+        'direccion' => $request->direccion,
+        'descripcion' => $request->descripcion,
+    ]);
+
+    // Redireccionar con mensaje de éxito
+    return redirect()->route('proveedores.index')->with('success', 'Proveedor actualizado correctamente.');
+}
+
+
 
 }
