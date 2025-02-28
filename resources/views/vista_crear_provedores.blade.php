@@ -10,7 +10,7 @@
     <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg">
         <h1 class="text-2xl font-bold mb-4">Crear Nuevo Proveedor</h1>
         
-        <form action="{{ route('proveedores.store') }}" method="POST" class="space-y-4">
+        <form action="" method="POST" class="space-y-4">
             @csrf
             <div>
                 <label class="block text-gray-700">Nombre Completo</label>

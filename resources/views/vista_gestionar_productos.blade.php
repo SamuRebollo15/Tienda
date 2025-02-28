@@ -66,11 +66,14 @@
                             </td>
                             <td class="p-3 nombre">{{ $producto->nombre }}</td>
                             <td class="p-3 precio">{{ $producto->precio }}</td>
-                            <td class="p-3 {{ $producto->proveedor_id ? '' : 'text-red-500 font-semibold' }}">
-                            {{ $producto->proveedor_id ?? 'Sin proveedor' }}
-                        </td>
+                            <td class="p-3 {{ $producto->proveedor ? '' : 'text-red-500 font-semibold' }}">
+                                {{ $producto->proveedor->nombre_completo ?? 'Sin proveedor' }}
+                            </td>
 
-                            <td class="p-3">{{ $producto->descuento_id ?? 'Sin descuento' }}</td>
+                        
+                            <td class="p-3">
+                                {{ $producto->descuento->porcentaje ?? 'Sin descuento' }}%
+                            </td>
                             <td class="p-3">{{ $producto->descripcion }}</td>
                             <td class="p-3 cantidad">{{ $producto->cantidad }}</td>
                             <td>

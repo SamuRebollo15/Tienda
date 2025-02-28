@@ -14,8 +14,16 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::all();
-        return view('vista_gestionar_productos', ['productos' => $productos]); // Corrige el cierre de la función
+        $proveedores = Proveedor::all(); // Corrección en el nombre de la variable
+        $descuentos = Descuento::all(); // Corrección en el nombre de la variable
+    
+        return view('vista_gestionar_productos', [
+            'productos' => $productos,
+            'proveedores' => $proveedores,
+            'descuentos' => $descuentos
+        ]);
     }
+    
 
     public function home()
     {
