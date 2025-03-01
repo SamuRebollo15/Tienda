@@ -15,6 +15,11 @@
         </a>
     </div>
 
+    @if(session('success'))
+            <div class="bg-green-500 text-center text-white p-4 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
     <div class="max-w-4xl mx-auto p-6">
         <h1 class="text-3xl font-bold mb-6 text-center">
             📦 {{ session('idioma', 'es') == 'es' ? 'Pedidos' : 'Orders' }}

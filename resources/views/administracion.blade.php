@@ -9,8 +9,8 @@
 <body class="bg-gray-100 flex justify-center">
 
     <div class="absolute top-4 left-4">
-        <a href="{{ url('/') }}" class="bg-orange-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-orange-600">
-            ← Volver al Inicio
+        <a href="{{ route('productos.home')}}" class="bg-orange-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-orange-600">
+            ← {{ session('idioma', 'es') == 'es' ? 'Volver al Inicio' : 'Back to Home' }}
         </a>
     </div>
 
@@ -18,28 +18,28 @@
         <h1 class="text-3xl font-bold text-center mb-6">Gestión de Tienda</h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
+            <a href="{{route('productos.index')}}" class="bg-blue-500 hover:bg-blue-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
                 <span class="text-lg font-semibold">Gestión de Productos</span>
             </a>
 
-            <a href="#" class="bg-green-500 hover:bg-green-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
+            <a href="{{route('pedidos.gestion')}}" class="bg-green-500 hover:bg-green-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
                 <span class="text-lg font-semibold">Gestión de Pedidos</span>
             </a>
 
-            <a href="#" class="bg-purple-500 hover:bg-purple-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
+            <a href="{{route('usuarios.index')}}" class="bg-purple-500 hover:bg-purple-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
                 <span class="text-lg font-semibold">Gestión de Usuarios</span>
             </a>
 
-            <a href="#" class="bg-red-500 hover:bg-red-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
-                <span class="text-lg font-semibold">Reportes y Estadísticas</span>
+            <a href="{{route('proveedores.index')}}" class="bg-red-500 hover:bg-red-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
+                <span class="text-lg font-semibold">Gestion de Proveedores</span>
             </a>
 
-            <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
-                <span class="text-lg font-semibold">Configuración</span>
+            <a href="{{route('descuentos.index')}}" class="bg-yellow-500 hover:bg-yellow-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
+                <span class="text-lg font-semibold">Gestion de Descuentos</span>
             </a>
 
-            <a href="#" class="bg-gray-500 hover:bg-gray-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
-                <span class="text-lg font-semibold">Soporte</span>
+            <a href="{{route('direcciones.index')}}" class="bg-gray-500 hover:bg-gray-600 text-white p-6 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center transition">
+                <span class="text-lg font-semibold">Gestion de direcciones</span>
             </a>
         </div>
     </div>

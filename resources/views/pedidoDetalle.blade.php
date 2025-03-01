@@ -71,7 +71,7 @@
         </div>
 
         <div class="mt-6 text-center">
-            <a href="{{ route('pedidos.index') }}" 
+            <a href="{{  url()->previous() }}" 
                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-300">
                 🔙 {{ session('idioma', 'es') == 'es' ? 'Volver' : 'Back' }}
             </a>
