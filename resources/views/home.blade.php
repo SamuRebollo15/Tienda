@@ -58,6 +58,27 @@
     @if (session('idioma', 'es') == 'es')
 
     @auth
+
+    @if(session('success'))
+    <div id="success-message" class="fixed top-3 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-semibold transition-opacity duration-500 opacity-100 z-50">
+        {{ session('success') }}
+    </div>
+
+    <script>
+        setTimeout(() => {
+            let successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                successMessage.style.opacity = '0'; // Desvanece el mensaje
+                setTimeout(() => {
+                    successMessage.remove(); // Lo elimina después de desvanecerse
+                }, 1000); // Espera 1 segundo tras el desvanecimiento
+            }
+        }, 4000); // Dura 7 segundos antes de empezar a desvanecerse
+    </script>
+    @endif
+
+
+
     <!-- Barra de navegación -->
     <nav class="bg-white shadow-md p-4 flex justify-between items-center relative">
 

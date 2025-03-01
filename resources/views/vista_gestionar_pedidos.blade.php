@@ -34,7 +34,7 @@
                             <td class="p-3">{{ $pedido->fecha_aproximada_entrega->format('d/m/Y') }}</td>
                             <td class="p-3">{{ $pedido->usuario->usuario ?? 'Sin usuario' }}</td>
                             <td class="p-3 flex space-x-2">
-                                <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Ver</a>
+                                <a href="{{ route('pedidos.show', ['id' => $pedido->id]) }}" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Ver</a>
                                 <form action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')

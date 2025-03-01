@@ -82,7 +82,7 @@ class PedidoController extends Controller
     // Guardar el pedido actualizado en la sesión
     session(['pedido' => $pedido]);
 
-    return back()->with('success', 'Producto añadido al pedido actual.');
+    return redirect()->route('productos.home')->with('success', 'Producto añadido al pedido actual.');
 }
 
 
