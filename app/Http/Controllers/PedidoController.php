@@ -20,6 +20,15 @@ class PedidoController extends Controller
         return view('pedidos', ['pedidos' => $pedidos]);
     }
     
+    public function gestion()
+    {
+        // Obtener todos los pedidos con información del usuario
+        $pedidos = Pedido::all();
+
+        // Retornar la vista con los pedidos
+        return view('vista_gestionar_pedidos', compact('pedidos'));
+    }
+
 
 
     public function show($id)
@@ -115,6 +124,20 @@ public function crearPedido()
 
     return back()->with('success', 'Pedido creado con éxito.');
 }
+
+public function destroy($id)
+{
+    $pedido = Pedido::findOrFail($id); // Busca el pedido por ID
+    
+    // Eliminar todas las líneas de producto asociadas a este pedido
+    $pedido->productos()->delete();
+
+    // Ahora eliminamos el pedido
+    $pedido->delete();
+
+    return redirect()->route('pedidos.gestion')->with('success', 'Pedido y sus productos eliminados correctamente.');
+}
+
 
 
 
