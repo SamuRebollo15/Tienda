@@ -61,6 +61,10 @@ Route::post('/descuentos', [DescuentoController::class, 'store'])->name('descuen
 
 Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index'); 
 Route::delete('/direcciones/{id}', [DireccionController::class, 'destroy'])->name('direcciones.destroy');
+Route::get('/crear-dirreccion', [DireccionController::class, 'create'])->name('dirreccion.create'); 
+Route::post('/direcciones', [DireccionController::class, 'store'])->name('direcciones.store');
+Route::get('/direcciones/{id}/edit', [DireccionController::class, 'edit'])->name('direcciones.edit');
+Route::put('/direcciones/{id}', [DireccionController::class, 'update'])->name('direcciones.update');
 
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');  
 Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
@@ -68,7 +72,11 @@ Route::get('/crearUsuario', [UsuarioController::class, 'create'])->name('usuario
 Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
 Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
 Route::get('/usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+
 Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
+Route::get('/gestion/pedidos', [PedidoController::class, 'gestion'])->name('pedidos.gestion');
+Route::delete('/pedidos/{id}', [PedidoController::class, 'destroy'])->name('pedidos.destroy');
+
 
 Route::get('/logout', function () {
    
