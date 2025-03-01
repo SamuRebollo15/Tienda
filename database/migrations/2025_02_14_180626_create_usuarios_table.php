@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('email')->unique(); // Campo de correo electrónico único
             $table->string('password'); // Laravel usa "password", no "contraseña"
             $table->string('rol')->default('usuario'); // Definir un rol por defecto
-            $table->string('nombre_completo')->nullable();
             $table->unsignedBigInteger('direccion_id')->nullable();
             $table->string('imagen_usuario')->nullable();
             $table->rememberToken(); // Para "Recuérdame"

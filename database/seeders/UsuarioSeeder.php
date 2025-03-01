@@ -17,7 +17,6 @@ class UsuarioSeeder extends Seeder
             'email' => 'juan@example.com',
             'password' => 'password123', // Laravel lo hasheará automáticamente
             'rol' => 'admin',
-            'nombre_completo' => 'Juan Pérez',
             'direccion_id' => 1,
             'imagen_usuario' => 'imagenes/fotoUsuario1.jpg',
         ]);
@@ -26,7 +25,6 @@ class UsuarioSeeder extends Seeder
             'email' => 'maria@example.com',
             'password' => 'password456',
             'rol' => 'usuario',
-            'nombre_completo' => 'María González',
             'direccion_id' => 2,
             'imagen_usuario' => 'maria.jpg',
         ]);
@@ -36,7 +34,6 @@ class UsuarioSeeder extends Seeder
             'email' => 'luis@example.com',
             'password' => 'password789',
             'rol' => 'usuario',
-            'nombre_completo' => 'Luis López',
             'direccion_id' => 3,
             'imagen_usuario' => 'luis.jpg',
         ]);

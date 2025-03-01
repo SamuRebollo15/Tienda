@@ -139,8 +139,9 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $usuario = Usuario::findOrFail($id); // Buscar el usuario por ID
-    
-        $ruta = $usuario->imagen_perfil; // Mantener la imagen actual si no se sube una nueva
+        $nombreArchivo = null;
+        $extension = null;
+        
     
         if ($request->hasFile('imagen_perfil')) {
             $imagen = $request->file('imagen_perfil');
