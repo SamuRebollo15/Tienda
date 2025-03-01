@@ -37,7 +37,7 @@
                             <td class="p-3">{{ $direccion->codigo_postal }}</td>
                             <td class="p-3 flex space-x-2">
                                 <a href="" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
-                                <form action="" method="POST" class="inline">
+                                <form action="{{ route('direcciones.destroy', $direccion->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded text-sm">Eliminar</button>

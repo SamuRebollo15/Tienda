@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\Descuento;
+use App\Models\PedidoProducto;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 
@@ -13,12 +14,29 @@ class PedidoController extends Controller
 {
    
 
-   public function index()
+    public function index()
     {
-        $pedidos = Pedido::all();
-        return view('pedidos', ['pedidos' => $pedidos]); // Corrige el cierre de la función
+        $pedidos = Pedido::where('usuario_id', auth()->id())->get();
+        return view('pedidos', ['pedidos' => $pedidos]);
     }
     
+
+
+    public function show($id)
+{
+    // Buscar el pedido con sus líneas de productos
+    $pedido = Pedido::findOrFail($id);
+    
+    // Obtener las líneas del pedido con información del producto
+    $lineas = PedidoProducto::where('pedido_id', $id)
+                ->with('producto') // Relación con el modelo Producto
+                ->get();
+
+    // Pasar los datos a la vista
+    return view('pedidoDetalle', compact('pedido', 'lineas'));
+}
+
+
 
     public function añadirProductoPedidoActual(Request $request)
 {
@@ -50,6 +68,8 @@ class PedidoController extends Controller
         'precio' => $producto->precio, // Agregar el precio del producto
     ];
 
+    
+
     // Guardar el pedido actualizado en la sesión
     session(['pedido' => $pedido]);
 
@@ -62,6 +82,31 @@ public function crearPedido()
     // Verificar si hay un pedido en la sesión
     if (!session()->has('pedido') || empty(session('pedido'))) {
         return back()->with('error', 'No hay ningún pedido en curso.');
+    }
+
+
+// Obtener los productos del pedido desde la sesión
+    $productos = session('pedido');
+
+    // Calcular el total del pedido
+    $totalPedido = 0;
+    foreach ($productos as $producto) {
+        $totalPedido += $producto['cantidad'] * $producto['precio'];
+    }
+
+    $pedido = Pedido::create([
+        'usuario_id' => auth()->id(), // Asignar el usuario autenticado
+        'fecha_compra' => now(), // Fecha de compra en el momento actual
+        'fecha_aproximada_entrega' => now()->addDays(2), // Fecha de entrega en 2 días
+    ]);
+
+    foreach ($productos as $producto) {
+        PedidoProducto::create([
+            'pedido_id' => $pedido->id,
+            'producto_id' => $producto['producto_id'],
+            'cantidad' => $producto['cantidad']
+            
+        ]);
     }
 
    

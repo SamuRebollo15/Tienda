@@ -43,7 +43,7 @@ Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('p
 Route::get('/crearProducto', [ProductoController::class, 'crearProductoVista']) ->name('productos.create');
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 Route::get('/productos/{id}/detalle', [ProductoController::class, 'detalle'])->name('productos.detalle');
-Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');    
+
 
 Route::get('/proveedores', [ProveedorController::class, 'index'])->name('proveedores.index'); 
 Route::delete('/proveedores/{id}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
@@ -52,9 +52,23 @@ Route::post('/proveedores', [ProveedorController::class, 'store'])->name('provee
 Route::get('/proveedores/{id}/edit', [ProveedorController::class, 'edit'])->name('proveedores.edit');
 Route::put('/proveedores/{id}', [ProveedorController::class, 'update'])->name('proveedores.update');
 
+Route::get('/descuentos', [DescuentoController::class, 'index'])->name('descuentos.index');    
+Route::get('/crearDescuento', [DescuentoController::class, 'create'])->name('descuentos.create'); 
+Route::get('/descuentos/{id}/edit', [DescuentoController::class, 'edit'])->name('descuentos.edit');
+Route::delete('/descuentos/{id}', [DescuentoController::class, 'destroy'])->name('descuentos.destroy');
+Route::put('/descuentos/{id}', [DescuentoController::class, 'update'])->name('descuentos.update');
+Route::post('/descuentos', [DescuentoController::class, 'store'])->name('descuentos.store');
+
 Route::get('/direcciones', [DireccionController::class, 'index'])->name('direcciones.index'); 
+Route::delete('/direcciones/{id}', [DireccionController::class, 'destroy'])->name('direcciones.destroy');
 
-
+Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');  
+Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+Route::get('/crearUsuario', [UsuarioController::class, 'create'])->name('usuarios.create'); 
+Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
+Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
+Route::get('/usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
 
 Route::get('/logout', function () {
    
@@ -67,17 +81,6 @@ Route::get('/logout', function () {
 })->middleware('auth')->name('logout');
 
 
-Route::get('/prueba', function () {
-   
-    return view('ejemplo');
-})->name('prueba');
-
-Route::get('/productos/filtrar/nombre', [ProductoController::class, 'filtrarPorNombre']); // Filtrar por nombre
-Route::get('/productos/filtrar/precio-min', [ProductoController::class, 'filtrarPorPrecioMin']); // Filtrar por precio mínimo
-Route::get('/productos/filtrar/precio-max', [ProductoController::class, 'filtrarPorPrecioMax']); // Filtrar por precio máximo
-Route::get('/productos/filtrar/rango-precio', [ProductoController::class, 'filtrarPorRangoPrecio']); // Filtrar por rango de precio
-Route::get('/productos/ordenar/precio', [ProductoController::class, 'ordenarPorPrecio']); // Ordenar por precio
-Route::get('/productos/filtrar/proveedor', [ProductoController::class, 'filtrarPorProveedor']); // Filtrar por proveedor
 
 
 Route::get('/detalle-producto', function () {
