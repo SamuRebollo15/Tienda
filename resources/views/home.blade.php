@@ -58,8 +58,6 @@
     @if (session('idioma', 'es') == 'es')
 
     @auth
-
-    <h1>Estas logueado</h1>
     <!-- Barra de navegación -->
     <nav class="bg-white shadow-md p-4 flex justify-between items-center relative">
 
@@ -85,8 +83,14 @@
             </div>
 
 
-            <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="Usuario" class="w-8 h-8 rounded-full">
-            <span class="font-semibold">Samuel</span>
+            <img src="{{ !empty(Auth::user()->imagen_usuario) && file_exists(public_path('imagenes/' . Auth::user()->imagen_usuario)) 
+            ? asset('imagenes/' . Auth::user()->imagen_usuario) 
+            : 'https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png' }}" 
+     alt="Usuario" 
+     class="w-8 h-8 rounded-full border-2 border-black object-cover shadow-lg">
+
+
+            <span class="font-semibold">{{Auth::user()->usuario}}</span>
             <div class="relative inline-block text-left">
                 <button id="dropdownButton" class="bg-blue-500 text-white px-4 py-2 rounded flex items-center">
                     <span class="mr-2">Menú</span>
@@ -124,13 +128,18 @@
                     <p class="text-gray-700 mt-2">$ {{ number_format($producto->precio, 2) }}</p>
                 </div>
                 <div class="botones">
+                    <form id="form-{{ $producto->id }}" action="{{ route('pedido.agregar.actual') }}" method="POST" class="hidden">
+                        @csrf
+                        <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                        <input type="hidden" name="cantidad" value="1">
+                    </form>
                     <button
                         onclick="window.location.href='{{ route('productos.detalle', $producto->id) }}'"
                         class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">
                         Info
                     </button>
 
-                    <button class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
+                    <button onclick="document.getElementById('form-{{ $producto->id }}').submit();" class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 mr-3">Añadir al carrito</button>
                 </div>
             </div>
             @endforeach
@@ -155,7 +164,6 @@
         @endauth
 
         @guest
-        <h1>Esto es no loggeado </h1>
         <!-- Barra de navegación -->
         <nav class="bg-white shadow-md p-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold">Tienda Laravel</h1>
@@ -236,7 +244,6 @@
 
         @auth
 
-        <h1>Estas logueado</h1>
         <!-- Barra de navegación -->
         <nav class="bg-white shadow-md p-4 flex justify-between items-center relative">
 
@@ -262,8 +269,12 @@
                 </div>
 
 
-                <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="Usuario" class="w-8 h-8 rounded-full">
-                <span class="font-semibold">Samuel</span>
+                <img src="{{ !empty(Auth::user()->imagen_usuario) && file_exists(public_path('imagenes/' . Auth::user()->imagen_usuario)) 
+                ? asset('imagenes/' . Auth::user()->imagen_usuario) 
+                : 'https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png' }}" 
+         alt="Usuario" 
+         class="w-8 h-8 rounded-full border-2 border-black object-cover shadow-lg">
+                <span class="font-semibold">{{Auth::user()->usuario}}</span>
                 <div class="relative inline-block text-left">
                     <button id="dropdownButton" class="bg-blue-500 text-white px-4 py-2 rounded flex items-center">
                         <span class="mr-2">Menu</span>
@@ -332,7 +343,6 @@
             @endauth
 
             @guest
-            <h1>Esto es no loggeado </h1>
             <!-- Barra de navegación -->
             <nav class="bg-white shadow-md p-4 flex justify-between items-center">
                 <h1 class="text-2xl font-bold">Laravel Store</h1>

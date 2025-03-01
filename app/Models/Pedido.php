@@ -15,6 +15,7 @@ class Pedido extends Model
 
     protected $casts = [
         'fecha_aproximada_entrega' => 'datetime',
+        'fecha_compra' => 'datetime',
     ];
     // Relación con el modelo Usuario
     public function usuario()
@@ -27,4 +28,6 @@ class Pedido extends Model
     {
         return $this->hasMany(PedidoProducto::class);
     }
+
+    
 }

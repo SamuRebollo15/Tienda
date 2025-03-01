@@ -34,10 +34,12 @@
                 <h3 class="text-lg font-medium mb-4">Avatar del Usuario</h3>
                 <div class="flex items-center justify-center mb-6">
                     <div class="relative w-60 h-60">
-                        <img src="{{ $user->imagen_usuario ? asset('imagenes/' . $user->imagen_usuario) : 'https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png' }}" 
-                             alt="Usuario" 
-                             class="w-60 h-60 rounded-full border-2 border-black object-cover shadow-lg">
-                        
+                        <img src="{{ !empty($user->imagen_usuario) && file_exists(public_path('imagenes/' . $user->imagen_usuario)) 
+                            ? asset('imagenes/' . $user->imagen_usuario) 
+                            : 'https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png' }}"
+                    alt="Usuario" 
+                    class="w-60 h-60 rounded-full border-2 border-black object-cover shadow-lg">
+
                         @if(empty($user->imagen_usuario))
                             <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-full">
                                 <span class="text-white font-semibold">Sin imagen</span>

@@ -108,7 +108,7 @@
                                 </span>
                             </td>
                             <td class="border p-2 text-center">
-                                <a href="" 
+                                <a href="{{ route('pedidos.show', ['id' => $pedido->id]) }}" 
                                    class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition">
                                     👀 Ver Pedido
                                 </a>
