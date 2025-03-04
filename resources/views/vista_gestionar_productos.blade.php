@@ -85,7 +85,7 @@
                             <td class="p-3">
                                 {{ $producto->descuento->porcentaje ?? (session('idioma', 'es') == 'es' ? 'Sin descuento' : 'No discount') }}%
                             </td>
-                            <td class="p-3">{{ $producto->descripcion }}</td>
+                            <td class="p-3">  {{ session('idioma', 'es') == 'es' ? $producto->descripcion : $producto->descripcionIngles }}</td>
                             <td class="p-3 cantidad">{{ $producto->cantidad }}</td>
                             <td>
                                 @if(is_null($producto->proveedor_id))
