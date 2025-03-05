@@ -20,8 +20,8 @@ class ProductosSeeder extends Seeder
             'nombre' => 'Laptop HP',
             'nombreIngles' => 'HP Laptop',
             'precio' => 1200.00,
-            'proveedor_id' => 1,  // Asegúrate de que el proveedor con ID 1 exista
-            'descuento_id' => 1,  // Asegúrate de que el descuento con ID 1 exista
+            'proveedor_id' => 1,  
+            'descuento_id' => 1,  
             'descripcion' => 'Laptop HP con procesador Intel i7, 16GB RAM y 512GB SSD.',
             'descripcionIngles' => 'HP laptop with Intel i7 processor, 16GB RAM and 512GB SSD.',
             'cantidad' => 20,

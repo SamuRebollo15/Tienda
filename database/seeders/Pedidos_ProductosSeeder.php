@@ -18,6 +18,10 @@ class Pedidos_ProductosSeeder extends Seeder
             ['pedido_id' => 1, 'producto_id' => 2, 'cantidad' => 1],
             ['pedido_id' => 2, 'producto_id' => 1, 'cantidad' => 1],
             ['pedido_id' => 2, 'producto_id' => 3, 'cantidad' => 3],
+            ['pedido_id' => 3, 'producto_id' => 1, 'cantidad' => 2],
+            ['pedido_id' => 4, 'producto_id' => 2, 'cantidad' => 1],
+            ['pedido_id' => 4, 'producto_id' => 4, 'cantidad' => 6],
+           
             
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
